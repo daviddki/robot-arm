@@ -13,7 +13,7 @@ AccelStepper elbowMotor(InterfaceType, E0_STEP_PIN, E0_DIR_PIN);
 //For the motor that moves the wrist joint
 AccelStepper wristMotor(InterfaceType, E1_STEP_PIN, E0_DIR_PIN);
 
-void setup() {
+void motor_setup() {
   //400 and 200 are temporary values
   //we will have to play around with the hardware a bit
   //before the desired speed/acceleration is found
