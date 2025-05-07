@@ -21,6 +21,6 @@
 #define E1_STEP_PIN 36
 #define E1_DIR_PIN 34
 
-void setup();
+void motor_setup();
 
 #endif /* _MOTOR_HPP */
