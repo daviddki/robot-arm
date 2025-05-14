@@ -1,4 +1,4 @@
-#include "motor.hpp"
+#include "stepper.hpp"
 
 //For the motor that rotates the base
 AccelStepper baseMotor(InterfaceType, X_STEP_PIN, X_DIR_PIN);
@@ -13,7 +13,7 @@ AccelStepper elbowMotor(InterfaceType, E0_STEP_PIN, E0_DIR_PIN);
 //For the motor that moves the wrist joint
 AccelStepper wristMotor(InterfaceType, E1_STEP_PIN, E1_DIR_PIN);
 
-void motor_setup() {
+void stepper_setup() {
   //400 and 200 are temporary values
   //we will have to play around with the hardware a bit
   //before the desired speed/acceleration is found
@@ -35,8 +35,8 @@ void motor_setup() {
   rightMotor.setPinsInverted(false, false, true);
   rightMotor.enableOutputs();
 
-  elbowMotor.setMaxSpeed(400);
-  elbowMotor.setAcceleration(200);
+  elbowMotor.setMaxSpeed(1000);
+  elbowMotor.setAcceleration(400);
   elbowMotor.setEnablePin(E0_EN_PIN);
   elbowMotor.setPinsInverted(false, false, true);
   elbowMotor.enableOutputs();
