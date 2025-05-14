@@ -1,5 +1,5 @@
-#ifndef _MOTOR_HPP
-#define _MOTOR_HPP
+#ifndef _STEPPER_HPP
+#define _STEPPER_HPP
 
 #include <AccelStepper.h>
 
@@ -34,4 +34,4 @@ extern AccelStepper wristMotor;
 
 void motor_setup();
 
-#endif /* _MOTOR_HPP */
+#endif /* _STEPPER_HPP */
