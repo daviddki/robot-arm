@@ -26,7 +26,7 @@ void stepper_setup() {
   leftMotor.setMaxSpeed(400);
   leftMotor.setAcceleration(200);
   leftMotor.setEnablePin(Y_EN_PIN);
-  leftMotor.setPinsInverted(false, false, true);
+  leftMotor.setPinsInverted(true, false, true);
   leftMotor.enableOutputs();
 
   rightMotor.setMaxSpeed(400);
