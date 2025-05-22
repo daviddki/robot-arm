@@ -7,10 +7,22 @@
 
 void setup();
 
+void open_thumb();
+
+void open_fingers();
+
+void close_thumb();
+
+void close_fingers();
+
+/*
 void rock();
 void paper();
 void scissors();
 
 void rps();
+*/
+
+void loop();
 
 #endif /* _MAIN_HPP */
