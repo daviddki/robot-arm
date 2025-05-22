@@ -15,12 +15,11 @@ void setup() {
 }
 
 void loop() {
-  /*
-  if (!digitalRead(RPS_INPUT)) {
-    rps();
-  }
-  */
-  baseMotor.run();
+  
+    if (!digitalRead(RPS_INPUT)) {
+      rps();
+    }
+  
   }
 
 void rps() {
