@@ -2,29 +2,46 @@
 #include "servo.hpp"
 #include <stdlib.h>
 
-void setup() {
-  //pinMode(RPS_INPUT, INPUT);
-  Serial.begin(9600);
-  servoSetup();
-}
+int thumbPos = 180;
+int fingersPos = 180;
 
 void open_thumb() {
-
+  if (thumbPos == 0) {
+    for(; thumbPos > 0; --thumbPos) {
+      thumbUp.write(thumbPos);
+      thumbDown.write(thumbPos);
+    }
+  }
 }
 
 void open_fingers() {
-
+  if (fingersPos == 0) {
+    for(; fingersPos > 0; --fingersPos) {
+      fingersUp.write(fingersPos);
+      fingersDown.write(fingersPos);
+    }
+  }
 }
 
 void close_thumb() {
-
+  if (thumbPos != 0) {
+    for(; thumbPos < 180; ++thumbPos) {
+      thumbUp.write(thumbPos);
+      thumbDown.write(thumbPos);
+    }
+  }
 }
 
 void close_fingers() {
-
+  if (fingersPos != 0) {
+    for(; fingersPos < 180; ++fingersPos) {
+      fingersUp.write(fingersPos);
+      fingersDown.write(fingersPos);
+    }
+  }
 }
 
-/*
+
 void rock() {
   close_thumb();
   close_fingers();
@@ -36,14 +53,11 @@ void paper() {
 }
 
 void scissors() {
-  close_finger(finger0);
-  open_finger(finger1);
-  open_finger(finger2);
+  open_fingers();
+  close_thumb();
 }
 
 void rps() {
-  //wait for rps() on arm
-  //see if u can do some handshaking thing where rps() on arm sends a signal after its done
   int action = rand() % 3;
   switch (action) {
     case 0:
@@ -54,38 +68,40 @@ void rps() {
       scissors();
   }
 }
-*/
+
+void setup() {
+  pinMode(RPS_INPUT, INPUT);
+  servoSetup();
+    for(int i = 0; i < 180; ++i) {
+      fingersUp.write(i);
+      fingersDown.write(i);
+      thumbUp.write(i);
+      thumbDown.write(i);
+    }
+}
 
 void loop() {
-  /*
-  motor_setup();
-  setup();
-  while (1) {
-    if (RPS_INPUT == 1) {
-      rps();
-    }
+
+  if (RPS_INPUT == 1) {
+    rps();
   }
-  */
   
-  Serial.println(1);
+  /*
   int i = 0;
   for(; i < 90; ++i) {
-    thumbUp.write(i);
+    fingersUp.write(i);
+    fingersDown.write(i);
   }
   delay(1000);
   for(; i < 180; ++i) {
-    thumbUp.write(i);
+    fingersUp.write(i);
+    fingersDown.write(i);
   }
   delay(1000);
   for(; i > 0; --i) {
-    thumbUp.write(i);
+    fingersUp.write(i);
+    fingersDown.write(i);
   }
   delay(1000);
-  
-  /*
-  int i = 0;
-  for (; i >-180; --i) {
-    thumbUp.write(i);
-  }
-  */
+ */
 }
