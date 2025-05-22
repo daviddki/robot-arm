@@ -2,21 +2,16 @@
 #include "stepper.hpp"
 #include "servo.hpp"
 
+bool done = 0;
+
 void setup() {
-  /*pinMode(RPS_INPUT, INPUT);
+  /*
+  pinMode(RPS_INPUT, INPUT);
   pinMode(RPS_OUTPUT, OUTPUT);
-  stepper_setup();*/
+  stepper_setup();
+  */
   Serial.begin(9600);
-  servoSetup();
-  int pos;
-  for (pos = 0; pos <= 180; pos++) {
-    thumbDown.write(pos);
-    delay(15);
-  }
-  for (pos = 180; pos >= 0; pos--) {
-    thumbDown.write(pos);
-    delay(15);
-  }
+  stepper_setup();
 }
 
 void loop() {
@@ -26,17 +21,37 @@ void loop() {
     Serial.println("hi");
     elbowMotor.moveTo(2000);
   }
-  elbowMotor.run();
+  */
+  if (!done) {
+    rps();
+    done = 1;
+  }
+  //wristMotor.run();
+  /*
+  Serial.println(1);
+  thumbDown.write(0);
+  delay(1000);
+  thumbDown.write(90);
+  delay(1000);
+  thumbDown.write(180);
+  delay(1000);
   */
 }
 
 void rps() {
   for (int i = 0; i < 3; ++i) {
+    elbowMotor.moveTo(400);
+    while (elbowMotor.isRunning()) {
+      elbowMotor.run();
+    }
     //arm up
-    if (i == 2) {
-      digitalWrite(RPS_OUTPUT, HIGH);
-      delay(10);
-      digitalWrite(RPS_OUTPUT, LOW);
+    if (i != 2) {
+      elbowMotor.moveTo(0);
+      while (elbowMotor.isRunning()) {
+        elbowMotor.run();
+      }
+    } else {
+      //move fingers accordingly
     }
     //arm down
   }
