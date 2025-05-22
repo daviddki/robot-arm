@@ -1,21 +1,38 @@
 #include "hand_main.hpp"
-#include "fingers.hpp"
+#include "servo.hpp"
 #include <stdlib.h>
 
 void setup() {
-  pinMode(RPS_INPUT, INPUT);
+  //pinMode(RPS_INPUT, INPUT);
+  Serial.begin(9600);
+  servoSetup();
 }
 
+void open_thumb() {
+
+}
+
+void open_fingers() {
+
+}
+
+void close_thumb() {
+
+}
+
+void close_fingers() {
+
+}
+
+/*
 void rock() {
-  close_finger(finger0);
-  close_finger(finger1);
-  close_finger(finger2);
+  close_thumb();
+  close_fingers();
 }
 
 void paper() {
-  open_finger(finger0);
-  open_finger(finger1);
-  open_finger(finger2);
+  open_thumb();
+  open_fingers();
 }
 
 void scissors() {
@@ -37,8 +54,10 @@ void rps() {
       scissors();
   }
 }
+*/
 
-int main() {
+void loop() {
+  /*
   motor_setup();
   setup();
   while (1) {
@@ -46,5 +65,27 @@ int main() {
       rps();
     }
   }
-  return 0;
+  */
+  
+  Serial.println(1);
+  int i = 0;
+  for(; i < 90; ++i) {
+    thumbUp.write(i);
+  }
+  delay(1000);
+  for(; i < 180; ++i) {
+    thumbUp.write(i);
+  }
+  delay(1000);
+  for(; i > 0; --i) {
+    thumbUp.write(i);
+  }
+  delay(1000);
+  
+  /*
+  int i = 0;
+  for (; i >-180; --i) {
+    thumbUp.write(i);
+  }
+  */
 }
