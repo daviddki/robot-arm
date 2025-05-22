@@ -4,22 +4,17 @@
 bool done = 0;
 
 void setup() {
-  /*
   pinMode(RPS_INPUT, INPUT);
   pinMode(RPS_OUTPUT, OUTPUT);
+  digitalWrite(RPS_OUTPUT, LOW);
+
   stepper_setup();
-  */
-  Serial.begin(9600);
-  stepper_setup();
-  baseMotor.moveTo(400);
 }
 
 void loop() {
-  
     if (!digitalRead(RPS_INPUT)) {
       rps();
     }
-  
   }
 
 void rps() {
@@ -34,7 +29,9 @@ void rps() {
         elbowMotor.run();
       }
     } else {
-      //move fingers accordingly
+      digitalWrite(RPS_OUTPUT, HIGH);
+      delay(50);
+      digitalWrite(RPS_OUTPUT, LOW);
     }
   }
   delay(5000);
