@@ -22,7 +22,7 @@ void loop() {
     elbowMotor.moveTo(2000);
   }
   */
-  if (!done) {
+  if (!digitalRead(RPS_INPUT)) {
     rps();
     done = 1;
   }
