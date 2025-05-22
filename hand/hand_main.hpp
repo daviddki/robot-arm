@@ -3,7 +3,7 @@
 
 #include <stdlib.h>
 
-#define RPS_INPUT 2; //placeholder
+#define RPS_INPUT 2
 
 void setup();
 
@@ -15,13 +15,15 @@ void close_thumb();
 
 void close_fingers();
 
-/*
+extern int thumbPos;
+extern int fingersPos;
+
 void rock();
 void paper();
 void scissors();
 
 void rps();
-*/
+
 
 void loop();
 
