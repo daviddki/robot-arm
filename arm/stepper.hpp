@@ -32,6 +32,10 @@ extern AccelStepper rightMotor;
 extern AccelStepper elbowMotor;
 extern AccelStepper wristMotor;
 
-void motor_setup();
+void stepper_setup();
+
+void moveShoulder(int steps);
+
+void runShoulder();
 
 #endif /* _STEPPER_HPP */
