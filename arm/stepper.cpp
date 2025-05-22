@@ -1,10 +1,10 @@
 #include "stepper.hpp"
 
 //For the motor that rotates the base
-AccelStepper baseMotor(InterfaceType, X_STEP_PIN, X_DIR_PIN);
+AccelStepper baseMotor(InterfaceType, Y_STEP_PIN, Y_DIR_PIN);
 
 //For the 2 motors that move the shoulder joint
-AccelStepper leftMotor(InterfaceType, Y_STEP_PIN, Y_DIR_PIN);
+AccelStepper leftMotor(InterfaceType, X_STEP_PIN, X_DIR_PIN);
 AccelStepper rightMotor(InterfaceType, Z_STEP_PIN, Z_DIR_PIN);
 
 //For the motor that moves the elbow joint
@@ -19,13 +19,13 @@ void stepper_setup() {
   //before the desired speed/acceleration is found
   baseMotor.setMaxSpeed(400);
   baseMotor.setAcceleration(200);
-  baseMotor.setEnablePin(X_EN_PIN);
+  baseMotor.setEnablePin(Y_EN_PIN);
   baseMotor.setPinsInverted(false, false, true);
   baseMotor.enableOutputs();
 
   leftMotor.setMaxSpeed(400);
   leftMotor.setAcceleration(200);
-  leftMotor.setEnablePin(Y_EN_PIN);
+  leftMotor.setEnablePin(X_EN_PIN);
   leftMotor.setPinsInverted(true, false, true);
   leftMotor.enableOutputs();
 
@@ -46,4 +46,14 @@ void stepper_setup() {
   wristMotor.setEnablePin(E1_EN_PIN);
   wristMotor.setPinsInverted(false, false, true);
   wristMotor.enableOutputs();
+}
+
+void moveShoulder(int steps) {
+  rightMotor.moveTo(steps);
+  leftMotor.moveTo(steps);
+}
+
+void runShoulder() {
+  rightMotor.run();
+  leftMotor.run();
 }
